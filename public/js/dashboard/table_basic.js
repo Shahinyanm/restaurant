@@ -1,18 +1,42 @@
 $(function () {
-	 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#send_slide_image').on('click', function(e){
+        e.preventDefault()
+        // console.log($('#textarea1').val())
+        var obj = new FormData(document.querySelector('#slide-inserting-form'))
+
+        $.ajax ({
+            type: 'post',
+            url:"/upload_slide_image",
+            data:obj,
+            contentType :false,
+            processData :false,
+            success:r=>{
+
+                console.log(r)
+            }
+
+        })
+
+
+
+    })
 
 	 $('#refresh_slide').on('click', function(){
-	 	console.log('a')
 	 	slide_refresh()
-	
-	})
+		})
 
 slide_refresh()
 function slide_refresh(){
 
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+"dashboard/slide_images",
+		url: "/slide_images",
 		data:{},
 		dataType:'json',
 		success:r=>{

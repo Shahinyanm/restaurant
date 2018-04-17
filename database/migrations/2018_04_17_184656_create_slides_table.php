@@ -13,10 +13,11 @@ class CreateSlidesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Slides', function (Blueprint $table) {
+        Schema::create('slides', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('photo');
+            $table->string('photo');
             $table->integer('status');
+
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateSlidesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Slides');
+        Schema::dropIfExists('slide');
     }
 }

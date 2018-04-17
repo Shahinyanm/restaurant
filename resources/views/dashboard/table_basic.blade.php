@@ -291,14 +291,14 @@
         <form class="col s12" id="slide-inserting-form" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="input-field col s12">
-                <input id="photo" type="file"  name="photo" value="{{URL::to('/')}}" >
+                <input id="photo" type="file"  name="photo"  >
                 <!-- <label for="photo">Photo</label> -->
                 </div>
             </div>
           </div>
-            
+      {{ csrf_field() }}
           </form>
-          <button class="btn" id="send_slide_image">Upload</button>
+          <button class="btn" id="send_slide_image" data-dismiss="modal">Upload</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -328,29 +328,5 @@
       	ga('send', 'pageview');
       }
     </script> -->
-    <script type="text/javascript">
-        
-        $('#send_slide_image').on('click', function(e){
-          e.preventDefault()
-          // console.log($('#textarea1').val())
-          var obj = new FormData(document.querySelector('#slide-inserting-form'))
 
-          $.ajax ({
-            type: 'post',
-            url: $('#base').val()+"admin/upload_slide_image",
-            data:obj,
-            contentType :false,
-            processData :false,
-            success:r=>{
-      
-              console.log(r)
-      }
-
-    })
-
-
-
-  })
-
-    </script>
     @endsection

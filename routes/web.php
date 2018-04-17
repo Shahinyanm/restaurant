@@ -18,7 +18,8 @@ Route::get('/', [
 	'uses' 	=> 'HomeController@getIndex',
 	'as'	=> 	'store.index'
 ]);
-
+Route::post('/slide_images','Ajax\AdminController@getSlideImages');
+Route::post('/upload_slide_image','Ajax\AdminController@uploadSlideImages');
 
 // Route::get('about', function () {
 //     return view('other.about');
@@ -34,6 +35,8 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		'uses'	=>	'AdminController@getIndex',
 		'as'	=>	'dashboard.page_user'	
 	]);
+
+
 	Route::get('components', [
 		'uses'	=>	'AdminController@getIndex',
 		'as'	=>	'dashboard.bootstrap_components'	

@@ -7,27 +7,16 @@ console.log('a')
 		data:{id:$(this).data('id')},
 		dataType:'json',
 		success:r=>{ 
-
-
-
-
 		}
-
 	})
-
 })
 
-
 	$('.deactive_catalog_status').on('click', function(){
-
-
 		$.ajax ({
 			type: 'post',
 			url: $('#base').val()+"product/deactive_catalog",
 			data:{id:$(this).data('id')},
 			dataType:'json',
 			success:r=>{ }
-	
-		})
-
+			})
 	})
