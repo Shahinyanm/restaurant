@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('store.index');
-});
+Route::get('/', [
+    'uses'  =>'HomeController@index',
+    'as'    => 'store.index'
+]);
+
+?>

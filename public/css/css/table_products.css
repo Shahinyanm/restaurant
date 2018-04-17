@@ -1,0 +1,48 @@
+.modal-product{
+	width:600px;
+	height: 600px;
+}
+#catalogs_names{
+	width:600px;
+	height: auto;
+}
+
+ .product_description{
+	
+	font-size:12px;
+	height: auto;
+	min-height: 100px;
+	margin-left:10px;
+
+ }
+ .product_name{
+	text-align: center;
+	font-size:15px;
+ }
+ .product_photo{
+	border-bottom:1px solid #7fcec6;
+	width: 260px;
+	height: 200px;	
+ }
+ .product_price{
+	
+	font-size:20px;
+	margin-left:10px;
+ }
+
+
+ .product_box{
+ 	/*padding:5px;*/
+	border: 1px solid #7fcec6;
+	margin-left:20px;
+	padding:0px !important;
+
+ }
+
+ .catalog_names{
+ 	border:1px solid;
+ 	     white-space: pre-line;
+ }
+.active{
+	background:#8FBBB5;
+}
