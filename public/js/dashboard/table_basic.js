@@ -20,11 +20,7 @@ $(function () {
 
                 console.log(r)
             }
-
         })
-
-
-
     })
 
 	 $('#refresh_slide').on('click', function(){
@@ -40,7 +36,7 @@ function slide_refresh(){
 		data:{},
 		dataType:'json',
 		success:r=>{
-	
+		console.log(r)
 			$('#slide_tab').empty()
 			var table = $('<table class="table"> </table>')
 			var thead = $('<thead> </thead>')
@@ -70,7 +66,6 @@ function slide_refresh(){
 				tr.appendTo(thead)
 				thead.appendTo(table)
 				table.appendTo('#slide_tab')
-	
 	
 	
 				for (i=0; i<r.length; i++){
@@ -114,10 +109,6 @@ function slide_refresh(){
 				}
 			}
 		})
-	
-	
-	
-	
 	}	 	
 
 
@@ -126,33 +117,23 @@ function slide_refresh(){
 
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+"dashboard/active_image",
+		url: "/active_image",
 		data:{id:$(this).data('id')},
 		dataType:'json',
-		success:r=>{ 
-
-
-
-
-		}
-
+		success:r=>{}
 	})
-
 })
 
 
 	$('body').on('click', '.deactivate', function(){
 
-
 		$.ajax ({
 			type: 'post',
-			url: $('#base').val()+"dashboard/deactive_image",
+			url: "/deactive_image",
 			data:{id:$(this).data('id')},
 			dataType:'json',
 			success:r=>{ }
-	
 		})
-
 	})
 
 
@@ -161,7 +142,7 @@ function slide_refresh(){
 
 		$.ajax ({
 			type: 'post',
-			url: $('#base').val()+"dashboard/delete_image",
+			url: "/delete_image",
 			data:{id:$(this).data('id')},
 			dataType:'json',
 			success:r=>{ }

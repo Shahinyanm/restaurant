@@ -1,22 +1,19 @@
-
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
 $('.add_catalog').on('click', function(){
 	// console.log($('#catalogName').val())
 
 	$.ajax ({
-		url: $('#base').val()+"products/catalog",
+		url: "/catalog",
 		data:{name:$('#catalogName').val()},
 		dataType:'json',
 		type: 'post',
-		success:r=>{ 
-
-
-
-
-		}
-
+		success:r=>{}
 	})
-
 })
 
 
@@ -25,34 +22,23 @@ $('.active_catalog_status').on('click', function(){
 
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+"products/active_catalog",
+		url: "/active_catalog",
 		data:{id:$(this).data('id')},
 		dataType:'json',
-		success:r=>{ 
-
-
-
-
-		}
-
+		success:r=>{ }
 	})
-
 })
 
 
 $('.deactive_catalog_status').on('click', function(){
 
-
-
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+"products/deactive_catalog",
+		url: "/deactive_catalog",
 		data:{id:$(this).data('id')},
 		dataType:'json',
 		success:r=>{ }
-		
 	})
-
 })
 
 
@@ -63,19 +49,12 @@ $('.new_product').on('click', function(e){
 		// obj.append('#.')
 		$.ajax ({
 			type: 'post',
-			url: $('#base').val()+"products/new_product",
+			url: "/new_product",
 			data:obj,
 			contentType :false,
 			processData :false,
-			success:r=>{
-
-				console.log(r)
-			}
-
+			success:r=>{}
 		})
-
-
-
 	})
 
 
@@ -83,11 +62,12 @@ function show_products( url2,catalog_id = 0,){
 
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+url2,
+		url: url2,
 		data:{id:catalog_id},
 		dataType:'json',
 		success:r=>{ 
 			$('#products_table').empty()
+			console.log(r)
 			if(r[0]){
 				r.forEach(function(item){
 					var col = $('<div class="col-md-3 col-lg-3 product_box" data-id="'+item.id+'">')
@@ -108,30 +88,23 @@ function show_products( url2,catalog_id = 0,){
 							console.log($(this).parents().find('.product_box'))
 							col.css("border-color", "#7fcec6")
 							$('.product_photo').css("border-color", "#7fcec6")
-														
-											
-
 						}
-
-						
+				
 					})
-
 			}
-
-
-
 		}
 
 	})
 }
-show_products('products/show_admin_products')
+
+show_products('/show_admin_products')
 
 
 $('body').on('click', '.show_product', function(){
 	console.log($(this).data('id'))
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+"products/show_modal_product",
+		url: "/show_modal_product",
 		data:{id:$(this).data('id')},
 		dataType:'json',
 		success:r=>{ 
@@ -191,39 +164,25 @@ $('body').on('click', '.edit_product', function(e){
 	var obj = new FormData(document.querySelector('#products_editing_form'))
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+"products/edit_product",
+		url: "/edit_product",
 		data:obj,
 		contentType :false,
 		processData :false,
-		success:r=>{ 
-
-			
-
-
-		}
-
-
+		success:r=>{ }
 	})
 
 })
 
 
 $('.btn_refresh').on('click', function(){
-	
-	$('.catalog_names').each(function(){
+		$('.catalog_names').each(function(){
+			console.log('a')
 
 		if($(this).hasClass('active')){
-
-			show_products('products/show_catalog_products',$(this).data('id'))
-
+			show_products('/show_catalog_products',$(this).data('id'))
 		}
 	})
-	// if (id == 0) {
 
-	// }else{
-		 
-		
-	// }
 })
 
 

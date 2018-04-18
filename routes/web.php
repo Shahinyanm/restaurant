@@ -18,8 +18,23 @@ Route::get('/', [
 	'uses' 	=> 'HomeController@getIndex',
 	'as'	=> 	'store.index'
 ]);
-Route::post('/slide_images','Ajax\AdminController@getSlideImages');
-Route::post('/upload_slide_image','Ajax\AdminController@uploadSlideImages');
+
+
+Route::post('/slide_images',		'Ajax\SlideController@getSlideImages');
+Route::post('/upload_slide_image',	'Ajax\SlideController@uploadSlideImages');
+Route::post('/active_image',		'Ajax\SlideController@activeImage');
+Route::post('/deactive_image',		'Ajax\SlideController@deActiveImage');
+Route::post('/delete_image',		'Ajax\SlideController@deleteImage');
+
+
+Route::post('/new_product',				'Ajax\ProductController@newProduct');
+Route::post('/catalog',					'Ajax\ProductController@newCatalog');
+Route::post('/active_catalog',			'Ajax\ProductController@activeCatalog');
+Route::post('/deactive_catalog',		'Ajax\ProductController@deActiveCatalog');
+Route::post('/show_catalog_products',	'Ajax\ProductController@showCatalogProducts');
+Route::post('/show_admin_products',	'Ajax\ProductController@showCatalogProducts');
+
+
 
 // Route::get('about', function () {
 //     return view('other.about');
@@ -34,6 +49,11 @@ Route::group(['prefix'=> 'dashboard'], function(){
 	Route::get('user', [
 		'uses'	=>	'AdminController@getIndex',
 		'as'	=>	'dashboard.page_user'	
+	]);
+
+	Route::get('products', [
+		'uses'	=>	'AdminController@getProducts',
+		'as'	=>	'dashboard.table_products'	
 	]);
 
 

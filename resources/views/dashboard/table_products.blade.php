@@ -1,40 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-  <!-- Twitter meta-->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:site" content="@pratikborsadiya">
-  <meta property="twitter:creator" content="@pratikborsadiya">
-  <!-- Open Graph Meta-->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Vali Admin">
-  <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
-  <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
-  <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
-  <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Main CSS-->
-  <link rel="stylesheet" type="text/css" href=" <?=base_url('assets/css/main.css'); ?> ">
-  <link rel="stylesheet" type="text/css" href=" <?=base_url('assets/dashboard/dashboard.css'); ?> ">
-  <link rel="stylesheet" type="text/css" href=" <?=base_url('assets/css/table_products.css'); ?> ">
-  <!-- Font-icon css-->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ @extends('layouts.admin')
+ @section('links')
+    <link rel="stylesheet" type="text/css" href=" {{URL::asset('css/css/table_products.css')}} ">
+    <link rel="stylesheet" type="text/css" href=" {{URL::asset('css/dashboard/dashboard.css')}} ">
+@endsection
 
+ @section('main')
 
-
-
-  <title>Tradition admin</title>
-</head>
-<body class="app sidebar-mini">
-
-
-
-  <?php $this->load->view('dashboard/table_header.php'); ?>  
+  
 
 
 
@@ -73,23 +45,31 @@
         <div class="tile" id="slide_tab">
           <h3 class="tile-title">Products Table</h3>
            <div class="row justify-content-around d-flex align-items-center " id="catalogs_table">
-             <?php if (isset($catalog)): ?>
-            <?php foreach ($catalog as $value): ?>
-              <?php if($value->status == 1): ?>
-              <div  class="col-md-2 col-lg-2 catalog_names btn" data-id="<?= $value->id ?>"> <?= $value->name ?> </div>
+             @if (isset($catalogs))
+              @foreach ($catalogs as $value)
+              @if($value->status == 1)
+                <div  class="col-md-2 col-lg-2 catalog_names btn" data-id="{{$value->id}}"> {{$value->name}} </div>
             
-              <?php endif ?>     
-           <?php endforeach ?>
-         <?php endif ?>     
+              @endif    
+           @endforeach
+         @endif 
        </div>
     <br>
     <hr>
-          <div class="row" id="products_table">
+    <div class="row" id="products_table">
+     @if (isset($products))
+     @foreach($products as $product)
 
-           
 
-
+        <div class="col-md-3 col-lg-3 product_box" data-id="{{$product->id}}">
+          <img  class="product_photo"" src="{{URL::asset('uploads/products')}}/{{$product->photo}}" alt="'+item.name+'">  
+          <h5  class="product_name">{{$product->name}}</h5>
+          <p class="product_description">{{$product->description}}</p>  
+          <p  class="product_price">{{$product->price}} руб.</p>
+          <button class=" col-md-12 btn show_product" data-id="{{$product->id}}" data-toggle="modal" data-target="#editProductModal"> Edit </button>
         </div>
+  @endforeach
+  @endif
       </div>
     </div>
   </div>
@@ -135,19 +115,19 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <?php if (isset($catalog)): ?>
-            <?php foreach ($catalog as $value): ?>
+          @if (isset($catalogs))
+            @foreach ($catalogs as $value)
               <div class="col-md-6">
 
-               <div data-id="<?= $value->id ?>">  <?= $value->name  ?></div> 
+               <div data-id="<?= $value->id ?>">  {{$value->name}}</div> 
              </div>
-             <div class="col-md-1"> <?= $value->status  ?></div>
+             <div class="col-md-1"> {{$value->status }}</div>
 
              <div class="col-md-2"> <button class=" btn active_catalog_status" data-id="<?= $value->id ?>"> Active</button></div>
              <div class="col-md-2"> <button class="btn btn-danger deactive_catalog_status" data-id="<?= $value->id ?>"> Deactive</button></div>
 
-           <?php endforeach ?>
-         <?php endif ?>     
+           @endforeach
+         @endif    
        </div>
 
 
@@ -202,15 +182,15 @@
                     <label for="MenuCatalogs">Catalogs</label>
                     <select class="form-control" name="catalog_name" id="MenuCatalogs">
 
-                      <?php if (isset($catalog)): ?>
-                        <?php foreach ($catalog as $value): ?>
-                          <?php if($value->status == 1):?>
+                      @if (isset($catalogs))
+                        @foreach ($catalogs as $value)
+                          @if($value->status == 1)
 
-                            <option value="<?= $value->id ?> ">  <?= $value->name  ?></option>
+                            <option value="{{$value->id}}"> {{ $value->name}} </option>
 
-                          <?php endif ?> 
-                        <?php endforeach ?>
-                      <?php endif ?>   
+                          @endif 
+                        @endforeach
+                      @endif   
                     </select>
                   </div>
                 </div>
@@ -301,7 +281,6 @@
 
 
 
-        <input type="hidden" id="base" value="<?= base_url()?>">
         <!-- Essential javascripts for application to work-->
         
 </body>
@@ -309,11 +288,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="<?= base_url('assets/js/main.js') ?>"></script>
+        <script src="{{URL::asset('js/js/main.js')}}"></script>
         <!-- The javascript plugin to display page loading on top-->
-        <script src="<?= base_url('assets/js/plugins/pace.min.js') ?>"></script>
+        <script src="{{URL::asset('js/js/plugins/pace.min.js')}}"></script>
         <!-- Page specific javascripts-->
-        <script src="<?= base_url('assets/dashboard/table_products.js') ?>"></script>
+        <script src="{{URL::asset('js/dashboard/table_products.js')}}"></script>
         <!-- Google analytics script-->
 <!--    <script type="text/javascript">
 if(document.location.hostname == 'pratikborsadiya.in') {
@@ -336,23 +315,7 @@ ga('send', 'pageview');
   }
 
 
-  // $('#send_slide_image').on('click', function(e){
-  //   e.preventDefault()
-  // // console.log($('#textarea1').val())
-  // var obj = new FormData(document.querySelector('#slide-inserting-form'))
-
-  // $.ajax ({
-  //   type: 'post',
-  //   url: $('#base').val()+"admin/upload_slide_image",
-  //   data:obj,
-  //   contentType :false,
-  //   processData :false,
-  //   success:r=>{
-
-  //     console.log(r)
-  //   }
-
-  // })
+  
 
 </script>
-</html>
+@endsection

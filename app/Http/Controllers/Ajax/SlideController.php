@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Slide;
 
-class AdminController extends Controller
+class SlideController extends Controller
 {
     public function getSlideImages()
     {
-        $response = request()->all();
+        $response = Slide::all();
+        // var_dump($response);
         return response()->json($response);
     }
 
@@ -31,4 +32,26 @@ class AdminController extends Controller
             $slide->save();
         }
     }
+
+    public function activeImage(Request $request)
+    {
+         $image  =  Slide::find($request->input("id"));
+         $image->status = 1;
+         $image->save();
+    }
+
+     public function deActiveImage(Request $request)
+    {
+         $image  =  Slide::find($request->input("id"));
+         $image->status = 0;
+         $image->save();
+    }
+
+      public function deleteImage(Request $request)
+    {
+         $image  =  Slide::find($request->input("id"));
+         $image->delete();
+    }
 }
+
+?>

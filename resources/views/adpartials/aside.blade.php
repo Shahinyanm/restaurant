@@ -28,6 +28,7 @@
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{route('dashboard.table_basic')}}"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
             <li><a class="treeview-item" href="{{route('dashboard.table_data-table')}}"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
+            <li><a class="treeview-item" href="{{route('dashboard.table_products')}}"><i class="icon fa fa-circle-o"></i> All Products</a></li>
           </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>

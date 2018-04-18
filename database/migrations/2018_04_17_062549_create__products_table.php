@@ -22,8 +22,11 @@ class CreateProductsTable extends Migration
             $table->text('photo');
             $table->integer('status');
             $table->integer('recomend');
-            $table->integer('catalog_id');
+            $table->integer('catalog_id')->unsigned()->index()->nullable();
+            $table->foreign('catalog_id')->references('id')->on('catalogs');
+
             $table->timestamps();
+            // $table->foreign('catalog_id')->references('id')->on('catalogs');
         });
     }
 

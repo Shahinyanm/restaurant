@@ -10,7 +10,7 @@ class Catalog extends Model
 
     public function products()
     {
-        return $this->hasMany('App\Product','catalog_id');
+        return $this->hasMany('App\Product');
 
     }
 }

@@ -19,7 +19,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href=" {{URL::asset('css/css/main.css')}} ">
+    @yield('links')
+  
     <!-- Font-icon css-->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Tradition admin</title>
   </head>
