@@ -59,7 +59,7 @@ $('.new_product').on('click', function(e){
 
 
 function show_products( url2,catalog_id = 0,){
-
+		// var url = '{{ URL::asset('uploads/products/') }}'
 	$.ajax ({
 		type: 'post',
 		url: url2,
@@ -70,8 +70,9 @@ function show_products( url2,catalog_id = 0,){
 			console.log(r)
 			if(r[0]){
 				r.forEach(function(item){
+
 					var col = $('<div class="col-md-3 col-lg-3 product_box" data-id="'+item.id+'">')
-					$('<img  class="product_photo"" src="'+$('#base').val()+'uploads/products/'+item.photo+'" alt="'+item.name+'">	').appendTo(col)
+					$('<img  class="product_photo"" src="'+url+'/'+item.photo+'" alt="'+item.name+'">	').appendTo(col)
 					$('<h5  class="product_name">'+item.name+'</h5></div></div>').appendTo(col)
 					$('<p class="product_description">'+item.description+'</p>	').appendTo(col)
 					$('<p  class="product_price">'+item.price+' руб.</p>').appendTo(col)
@@ -159,7 +160,6 @@ $('body').on('click', '.show_product', function(){
 
 
 $('body').on('click', '.edit_product', function(e){
-	console.log($('#product_status').val())
 	e.preventDefault()
 	var obj = new FormData(document.querySelector('#products_editing_form'))
 	$.ajax ({
@@ -176,7 +176,7 @@ $('body').on('click', '.edit_product', function(e){
 
 $('.btn_refresh').on('click', function(){
 		$('.catalog_names').each(function(){
-			console.log('a')
+	
 
 		if($(this).hasClass('active')){
 			show_products('/show_catalog_products',$(this).data('id'))
@@ -191,6 +191,6 @@ $('.catalog_names').on('click', function (){
 	$(this).parents().find('.catalog_names').removeClass('active')
 	$(this).toggleClass('active')
 
-	show_products('products/show_catalog_products', $(this).data('id'))
+	show_products('/show_catalog_products', $(this).data('id'))
 
 })

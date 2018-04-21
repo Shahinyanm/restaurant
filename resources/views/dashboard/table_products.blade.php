@@ -56,6 +56,7 @@
        </div>
     <br>
     <hr>
+
     <div class="row" id="products_table">
      @if (isset($products))
      @foreach($products as $product)
@@ -293,6 +294,10 @@
         <script src="{{URL::asset('js/js/plugins/pace.min.js')}}"></script>
         <!-- Page specific javascripts-->
         <script src="{{URL::asset('js/dashboard/table_products.js')}}"></script>
+        <script>
+    // "global" vars, built using blade
+    var url = '{{ URL::asset('uploads/products/') }}';
+</script>
         <!-- Google analytics script-->
 <!--    <script type="text/javascript">
 if(document.location.hostname == 'pratikborsadiya.in') {

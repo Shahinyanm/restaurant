@@ -70,7 +70,7 @@ class ProductController extends Controller
 	}
 
 	public function showCatalogProducts(Request $request){
-		if($request->id == 0){
+		if(!$request->id == 0){
 			$products = Product::where('catalog_id','=',$request->id)->get();
 		}else{
 			$products = Product::all();
@@ -78,4 +78,7 @@ class ProductController extends Controller
 		return response()->json($products);
 
 	}
+
+
+
 }
