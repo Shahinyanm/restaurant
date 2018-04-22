@@ -27,7 +27,7 @@
       <div class="col-md-11">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal" data-whatever="@mdo">Add new product</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#catalogModal" data-whatever="@mdo">Add new Catalog</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#catalogNameModal" 
+        <button type="button" class="btn btn-primary show_catalogs" data-toggle="modal" data-target="#catalogNameModal"
         data-whatever="@mdo">Show Catalogs</button>
         
       </div>
@@ -115,7 +115,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
+        <div class="row" id="catalog_list">
           @if (isset($catalogs))
             @foreach ($catalogs as $value)
               <div class="col-md-6">
@@ -253,13 +253,13 @@
                   <div class="form-group col-md-6">
                     <label for="MenuCatalogs">Catalogs</label>
                     <select class="form-control" name="productCatalogName" id="productCatalogName">
-                       <?php if (isset($catalog)): ?>
-                        <?php foreach ($catalog as $value): ?>
+                       @if (isset($catalogs))
+                        @foreach ($catalogs as $value)
 
-                            <option value="<?= $value->id ?> ">  <?= $value->name  ?></option>
+                            <option  value="{{$value->id }}"> {{$value->name }}</option>
 
-                        <?php endforeach ?>
-                      <?php endif ?>   
+                        @endforeach
+                     @endif
                     </select>
                   </div>
                 </div>
@@ -293,7 +293,8 @@
         <!-- The javascript plugin to display page loading on top-->
         <script src="{{URL::asset('js/js/plugins/pace.min.js')}}"></script>
         <!-- Page specific javascripts-->
-        <script src="{{URL::asset('js/dashboard/table_products.js')}}"></script>
+    <script src="{{URL::asset('js/underscore-min.js')}}"></script>
+    <script src="{{URL::asset('js/dashboard/table_products.js')}}"></script>
         <script>
     // "global" vars, built using blade
     var url = '{{ URL::asset('uploads/products/') }}';

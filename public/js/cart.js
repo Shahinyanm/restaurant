@@ -11,43 +11,30 @@ $('body').on('click', '.cash_btn', function(){
 
 	var price = $(this).parent().find('.product_price').html()
 	if(localStorage.getItem('sum')){
-		
 		sum = Number(JSON.parse(localStorage.getItem('sum')))
-		
 	}else {
-		
 		var sum=0;
 	}
-
-	
 	
 	sum += Number(price)
 	$('#sum').html(sum)
 	localStorage.setItem('sum', JSON.stringify(sum))
 
 	if(localStorage.getItem('products_cart')){
-
 		products_cart = JSON.parse(localStorage.getItem('products_cart'))
 
-
 		if(products_cart[$(this).data('id')]){
-	
 			products_cart[$(this).data('id')]++
 			products_cart[$(this).data('id')+'sum'] = (products_cart[$(this).data('id')] * price) 
-
-	
 		}else {
 			products_cart[$(this).data('id')] = 1
 			products_cart[$(this).data('id')+'sum'] += (products_cart[$(this).data('id')] * price) 
-
 		}
-
 	}else{
-	var products_cart = {};
+		var products_cart = {};
 
-			
-			products_cart[$(this).data('id')] = 1
-			products_cart[$(this).data('id')+'sum'] = (products_cart[$(this).data('id')] * price) 
+		products_cart[$(this).data('id')] = 1
+		products_cart[$(this).data('id')+'sum'] = (products_cart[$(this).data('id')] * price)
 	}
 	$('#ids').val(JSON.stringify(products_cart))
 	localStorage.setItem('products_cart', JSON.stringify(products_cart))

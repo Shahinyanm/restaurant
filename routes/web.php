@@ -29,11 +29,13 @@ Route::post('/delete_image',		'Ajax\SlideController@deleteImage');
 
 Route::post('/new_product',				'Ajax\ProductController@newProduct');
 Route::post('/catalog',					'Ajax\ProductController@newCatalog');
+Route::post('/show_catalogs',			'Ajax\ProductController@showCatalogs');
 Route::post('/active_catalog',			'Ajax\ProductController@activeCatalog');
 Route::post('/deactive_catalog',		'Ajax\ProductController@deActiveCatalog');
 Route::post('/show_catalog_products',	'Ajax\ProductController@showCatalogProducts');
-Route::post('/show_admin_products',	'Ajax\ProductController@showCatalogProducts');
-
+Route::post('/show_admin_products',		'Ajax\ProductController@showCatalogProducts');
+Route::post('/edit_product',		    'Ajax\ProductController@editProduct');
+Route::post('/show_modal_product',		 'Ajax\ProductController@showModalProduct');
 
 
 // Route::get('about', function () {
