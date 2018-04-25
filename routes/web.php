@@ -36,6 +36,7 @@ Route::post('/show_catalog_products',	'Ajax\ProductController@showCatalogProduct
 Route::post('/show_admin_products',		'Ajax\ProductController@showCatalogProducts');
 Route::post('/edit_product',		    'Ajax\ProductController@editProduct');
 Route::post('/show_modal_product',		 'Ajax\ProductController@showModalProduct');
+Route::post('/shop_card',				 'Ajax\ProductController@shopCard');
 
 
 // Route::get('about', function () {

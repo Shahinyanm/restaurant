@@ -58,7 +58,7 @@ function show_cart(){
 
 	$.ajax ({
 		type: 'post',
-		url: $('#base').val()+'products/shop_card',
+		url: '/shop_card',
 		data:data,
 		dataType:'json',
 		success:r=>{ 
@@ -88,6 +88,7 @@ $('body').on('click', '.minus', function(){
 	products[$(this).data('id')]--
 	products[$(this).data('id')+'sum']-=Number($(this).parents('.product_row').find('.price').html())
 	var t = Number($(this).parent().find('.qty').html())
+	if(t>1){
 	t--
 
 	$(this).parent().find('.qty').html(t)
@@ -96,6 +97,7 @@ $('body').on('click', '.minus', function(){
 	
 	$('#sum').html(Number($('#sum').html())-Number($(this).parents('.product_row').find('.price').html()))
 	localStorage.setItem('sum',JSON.stringify($('#sum').html()))
+	}
 
 })
 

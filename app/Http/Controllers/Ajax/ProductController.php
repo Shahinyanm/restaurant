@@ -139,5 +139,16 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function shopCard(){
+
+            $products=$request->input();
+            $data=[];
+            foreach ($products as $key =>$value) {
+                $data[]=Product::find(['id'=>$key]);
+                // var_dump($data);
+             }
+             return response()->json($data);
+    }
+
 
 }
