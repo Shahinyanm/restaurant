@@ -2,14 +2,32 @@
     <nav class="navbar  bg-dark navbar-dark head">
       <div class="d-flex justify-content-between col-md-12">
         <div >
-          <a class="" href="{{route('store.index')}}"><img style="width:75px;" src=""></a>
+          <a class="" href="{{route('store.index')}}"><img style="width:75px;" src="{{URL::asset('uploads/logo')}}"></a>
           <span  id="info"> Информация  </span>
           <div class="arrow_box"></div>
         </div>
         <div>
+          @if(!Auth::check())
+        <ul>
+          <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+          @else
+          <li>
+           
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-          <a class="phone" href="#">+7(8652)505-888, +7(8652)216-146</a>
-      
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                            
+                              </li>
+          <li></li>
+        </ul>
+        @endif
     </nav>
  
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top header">

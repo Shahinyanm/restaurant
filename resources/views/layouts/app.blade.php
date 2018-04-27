@@ -68,7 +68,7 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            @yield('login')
         </main>
     </div>
 </body>

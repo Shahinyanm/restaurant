@@ -105,10 +105,7 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		'uses'	=>	'AdminController@getIndex',
 		'as'	=>	'dashboard.blank_page'	
 	]);
-	Route::get('login', [
-		'uses'	=>	'AdminController@getIndex',
-		'as'	=>	'dashboard.page_login'	
-	]);
+
 	Route::get('lockscreen', [
 		'uses'	=>	'AdminController@getIndex',
 		'as'	=>	'dashboard.page_lockscreen'	
@@ -137,12 +134,16 @@ Route::group(['prefix'=> 'dashboard'], function(){
 		'uses'	=>	'AdminController@getIndex',
 		'as'	=>	'dashboard.page_error'	
 	]);
-	
-})
+		Route::get('login', [
+		'uses'	=>	'AdminController@getIndex',
+		'as'	=>	'dashboard.page_login'	
+	]);
 
+});
 
-
-
-	
-
+Auth::routes();
+Route::post('login',[
+'uses'	=> 'SigninController@signin',
+'as'	=> 'auth.signin'])
 ?>
+

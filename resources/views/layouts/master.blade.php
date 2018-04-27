@@ -14,6 +14,7 @@
     </head>
     <body>
     @include('partials.header')
+    @yield('login')
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12">
