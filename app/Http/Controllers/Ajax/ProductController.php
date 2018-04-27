@@ -139,7 +139,7 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function shopCard(){
+    public function shopCard(Request $request){
 
             $products=$request->input();
             $data=[];

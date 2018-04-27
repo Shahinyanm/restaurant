@@ -1,4 +1,9 @@
 	$(function(){
+		$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 	if(localStorage.getItem('sum')){
 		sum = JSON.parse(localStorage.getItem('sum'))
 		$('#sum').html(sum)
@@ -67,7 +72,7 @@ function show_cart(){
 				var table = $('<table class="table"> </table>')
 				r.forEach(function(item){
 
-						$('<tr  class="product_row"><td><img class="basket_product_img" src="'+$('#base').val()+'uploads/products/'+item[0].photo+'" alt="Card image cap"> </td><td>'+item[0].name+'</td><td class="price">'+item[0].price+'</td><td><button class="btn btn-small minus" data-id="'+item[0].id+'">-</button> <span class="qty"> '+products[item[0].id]+'</span> <button class="plus btn btn-small circle"  data-id="'+item[0].id+'">+</button></td><td class="total">'+products[item[0].id]*item[0].price+'</td> <td> <button class="btn delete_product_row btn-danger btn-smal" data-id="'+item[0].id+'">x</button></tr>').appendTo(table)
+						$('<tr  class="product_row"><td><img class="basket_product_img" src="'+url+'/'+item[0].photo+'" alt="Card image cap"> </td><td>'+item[0].name+'</td><td class="price">'+item[0].price+'</td><td><button class="btn btn-small minus" data-id="'+item[0].id+'">-</button> <span class="qty"> '+products[item[0].id]+'</span> <button class="plus btn btn-small circle"  data-id="'+item[0].id+'">+</button></td><td class="total">'+products[item[0].id]*item[0].price+'</td> <td> <button class="btn delete_product_row btn-danger btn-smal" data-id="'+item[0].id+'">x</button></tr>').appendTo(table)
 			
 				})
 			table.appendTo('#cart_box')

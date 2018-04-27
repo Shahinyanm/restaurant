@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -37,7 +38,9 @@
 <script src="{{URL::asset('js/script.js')}}"></script>
 <script src=" {{URL::asset('js/index.js')}} "></script>
 <script src=" {{URL::asset('js/cart.js')}} "></script>
-
+<script> 
+var url = '{{ URL::asset('uploads/products/') }}';
+</script>
 <script type="text/javascript">
     Cufon.replace('h1',{ textShadow: '1px 1px #000'});
     Cufon.replace('h2',{ textShadow: '1px 1px #000'});
