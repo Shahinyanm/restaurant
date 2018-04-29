@@ -43,7 +43,7 @@ Route::post('/shop_card',				 'Ajax\ProductController@shopCard');
 //     return view('other.about');
 // })->name('other.about');
 
-Route::group(['prefix'=> 'dashboard'], function(){
+Route::group(['prefix'=> 'dashboard','middleware' => ['auth', 'admin']], function(){
 	Route::get('', [
 		'uses'	=>	'AdminController@getIndex',
 		'as'	=>	'dashboard.index'	
@@ -141,9 +141,9 @@ Route::group(['prefix'=> 'dashboard'], function(){
 
 });
 
-Auth::routes();
-Route::post('login',[
-'uses'	=> 'SigninController@signin',
-'as'	=> 'auth.signin'])
+	Auth::routes();
+	Route::post('login',[
+	'uses'	=> 'SigninController@signin',
+	'as'	=> 'auth.signin'])
 ?>
 

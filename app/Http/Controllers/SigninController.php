@@ -15,14 +15,15 @@ class SigninController extends Controller
 
     	if(Auth::attempt(['email'=>$request->input('email'), 'password'=>$request->input('password')
     	],$request->has('remember'))){
-    		if($request->input('email')=='admin@admin.ru'){
-    			return redirect()->route('dashboard.index');
-    		}else{
-    			return redirect()->route('store.index');
-    		}
+                if ( Auth::user()->isAdmin() ) {
+                    return redirect()->route('dashboard.index');
+                }
+                return redirect()->route('store.index');
+            }
+        return redirect()->back()->with('fail','Authentication failed');
+
     	}
 
-    	return redirect()->back()->with('fail','Authentication failed');
 
-    }
+
 }
