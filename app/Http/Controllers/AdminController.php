@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Slide;
 use App\Catalog;
 use App\Product;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -16,8 +17,11 @@ class AdminController extends Controller
 //    }
     public function getIndex()
     {
-
-    	return view('dashboard.index');
+        if(Auth::user()){
+    	   return view('dashboard.index');
+        }else{
+            return redirect()->route('store.index');
+        }
     }
 
     public function getTableBasic()

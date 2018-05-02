@@ -15,7 +15,8 @@ class SigninController extends Controller
 
     	if(Auth::attempt(['email'=>$request->input('email'), 'password'=>$request->input('password')
     	],$request->has('remember'))){
-                if ( Auth::user()->isAdmin() ) {
+
+    		   if ( Auth::user()->isAdmin() ) {
                     return redirect()->route('dashboard.index');
                 }
                 return redirect()->route('store.index');

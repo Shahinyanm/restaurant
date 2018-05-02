@@ -28,6 +28,7 @@
 </div>
 @include('partials.center')
 </div>
+
     <div id="app"></div>
     <div id="box">
         <ul>
@@ -53,7 +54,11 @@
 <script src="{{URL::asset('js/script.js')}}"></script>
 <script src=" {{URL::asset('js/index.js')}} "></script>
 <script src=" {{URL::asset('js/cart.js')}} "></script>
+<<<<<<< HEAD
 
+=======
+<script src=" {{URL::asset('js/app.js')}} "></script>
+>>>>>>> 7d6ab643f14bb808135e8a8b6bf11045396fd0dd
 <script type="text/javascript">
     const url = '{{ URL::asset('uploads/products/') }}';
     Cufon.replace('h1',{ textShadow: '1px 1px #000'});
@@ -61,6 +66,7 @@
     Cufon.replace('.footer',{ textShadow: '1px 1px #000'});
     Cufon.replace('.pxs_loading',{ textShadow: '1px 1px #000'});
 </script>
+<<<<<<< HEAD
 
     <script>
 
@@ -99,4 +105,19 @@
 
 
     </script>
+=======
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#a',
+
+        data:{
+            message:"Hello",
+        }
+    });
+</script>
+<script> 
+var url = '{{ URL::asset('uploads/products/') }}';
+</script>
+
+>>>>>>> 7d6ab643f14bb808135e8a8b6bf11045396fd0dd
 </html>
