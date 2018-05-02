@@ -28,6 +28,11 @@
 </div>
 @include('partials.center')
 </div>
+<div id="app"></div>
+<div id="a">
+    <input v-model="message" type="text">
+    <h1>@{{message}}</h1>
+</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -39,13 +44,24 @@
 <script src="{{URL::asset('js/script.js')}}"></script>
 <script src=" {{URL::asset('js/index.js')}} "></script>
 <script src=" {{URL::asset('js/cart.js')}} "></script>
-<script> 
-var url = '{{ URL::asset('uploads/products/') }}';
-</script>
+<script src=" {{URL::asset('js/app.js')}} "></script>
 <script type="text/javascript">
     Cufon.replace('h1',{ textShadow: '1px 1px #000'});
     Cufon.replace('h2',{ textShadow: '1px 1px #000'});
     Cufon.replace('.footer',{ textShadow: '1px 1px #000'});
     Cufon.replace('.pxs_loading',{ textShadow: '1px 1px #000'});
 </script>
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#a',
+
+        data:{
+            message:"Hello",
+        }
+    });
+</script>
+<script> 
+var url = '{{ URL::asset('uploads/products/') }}';
+</script>
+
 </html>

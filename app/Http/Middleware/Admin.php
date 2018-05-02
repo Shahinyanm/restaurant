@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\Auth;
-
+use Auth;
 use Closure;
 
 class Admin
@@ -17,10 +16,11 @@ class Admin
     public function handle($request, Closure $next)
     {
 
-        if(Auth::check() && Auth::user()->isAdmin())
-        {
+        if(Auth::check() && Auth::user()->isAdmin()){
             return $next($request);
-        }
+        }else{
             return redirect()->route('store.index');
+        }
+
     }
 }
