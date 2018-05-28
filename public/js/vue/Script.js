@@ -1,20 +1,41 @@
-const app = new Vue({
-    el: '#app',
+var app1 = new Vue({
+    el: '#app1',
     data:{
-    	message:'hello'
+        message:'Hello',
+        show:false,
+        slide:[],
+        yes:false,
+        url:url2+'/'
+
     },
-});
-    // app.message="hello";
+    methods:{
+        slides(){
+            axios.post('/slide_images').then((response) => {
+                this.yes= true
+                console.log(response.data)
+                this.slide = response.data
+                console.log(this.slide)
+                console.log(this.url)
+            })
+        }
+    },
+    computed:{
+        message2 (){
+            return this.message +"hayvan"
+        }
+    }
+
+})
 
 
-// var app = new Vue({
-//   el: '#app',
-//   data: {
-//     message: '123'
-//   }
-// })
-// app.message = 'новое сообщение' // изменяем данные
-// app.$el.textContent === 'новое сообщение' // false
-// Vue.nextTick(function () {
-//   app.$el.textContent === 'новое сообщение' // true
-// })
+
+Vue.component('button-counter', {
+    data: function () {
+        return {
+            count: 0
+        }
+    },
+    template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+})
+
+new Vue({ el: '#components-demo' })

@@ -70,7 +70,7 @@ $.ajax ({
             	var col = $('<div class="col-md-3"> </div')
              	var card = $('<div class="card " > </div>')
 					$('	<img class="card-img-top product_img" src="'+$('#base').val()+'uploads/products/'+item.photo+'" alt="Card image cap">').appendTo(card)
-					 var card_block = $('<div class="card-block"></div')
+					 var card_block = $('<div class="card-block"></div>')
 							$('<h5 class="card-title product">'+item.name+'</h5>').appendTo(card_block)
 							$('<div class="product_description_block">').appendTo(card_block)
 							$('<p class="card-text product product_description">'+item.description+'</p> </div>').appendTo(card_block)
